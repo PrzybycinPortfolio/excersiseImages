@@ -13,6 +13,8 @@ class ImageProcessor:
         self.min_filter_converted_images = []
         self.max_filter_converted_images = []
         self.median_filter_converted_images = []
+        self.prewitt_images = []
+        self.sobel = []
 
         for img_path in self.my_images:
             img = Image.open(img_path).convert("L")
@@ -60,7 +62,7 @@ class ImageProcessor:
 
         self.save_to_directory("images\\min_filter")
 
-    def max_filter_convert(self,size,mode="reflect"):
+    def median_filter_convert(self,size,mode="reflect"):
         if size % 2 == 0:
             size = size + 1
 
@@ -73,6 +75,9 @@ class ImageProcessor:
             self.max_filter_converted_images.append(filtered_img)
 
         self.save_to_directory("images\\median_filter")
+
+
+
 
     def save_to_directory(self, directory_name):
         os.makedirs(directory_name, exist_ok=True)
