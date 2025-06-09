@@ -11,12 +11,12 @@ for file in os.listdir(directory):
     input_images.append(file_path)
 
 images = ImageProcessor.ImageProcessor(input_images)
-images.mean_filter_convert(size,mode)
-images.min_filter_convert(size,mode)
-images.max_filter_convert(size,mode)
-images.median_filter_convert(size,mode)
-images.prewitt_convert(mode)
-images.sobel_convert(mode)
+images.mean_filter_convert(size,mode) # 2 zadanie
+images.min_filter_convert(size,mode) # 3 zadanie część 1
+images.max_filter_convert(size,mode) # 3 zadanie część 2
+images.median_filter_convert(size,mode) # 4 zadanie
+images.prewitt_convert(mode) # 5 zadanie 1 część
+images.sobel_convert(mode) # 5 zadanie 2 część
 
 
 
