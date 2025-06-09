@@ -10,6 +10,8 @@ class ImageProcessor:
         self.my_images = my_images
         self.opened_images = []
         self.mean_filter_converted_images = []
+        self.min_filter_converted_images = []
+        self.max_filter_converted_images = []
 
         for img_path in self.my_images:
             img = Image.open(img_path).convert("L")
@@ -28,6 +30,30 @@ class ImageProcessor:
             self.mean_filter_converted_images.append(filtered_img)
 
         self.save_to_directory("images\\mean_filter")
+
+    def min_filter_convert(self,size,mode="reflect"):
+        if size % 2 == 0:
+            size = size + 1
+
+        self.min_filter_converted_images = []
+
+        for img in self.opened_images:
+            img_array = np.array(img)
+            filtered_array = ndi.minimum_filter(img_array, size=size, mode=mode)
+            filtered_img = Image.fromarray(filtered_array)
+            self.min_filter_converted_images.append(filtered_img)
+
+    def max_filter_converte(self,size,mode="reflect"):
+        if size % 2 == 0:
+            size = size + 1
+
+        self.max_filter_converted_images = []
+
+        for img in self.opened_images:
+            img_array = np.array(img)
+            filtered_array = ndi.maximum_filter(img_array, size=size, mode=mode)
+            filtered_img = Image.fromarray(filtered_array)
+            self.max_filter_converted_images.append(filtered_img)
 
     def save_to_directory(self, directory_name):
         os.makedirs(directory_name, exist_ok=True)
