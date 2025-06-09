@@ -76,29 +76,23 @@ class ImageProcessor:
 
         self.save_to_directory("images\\median_filter")
 
-    def prewitt_convert(self, size, mode="reflect"):
-        if size % 2 == 0:
-            size = size + 1
-
-        self.median_filter_converted_images = []
+    def prewitt_convert(self, mode="reflect"):
+        self.prewitt_images = []
 
         for img in self.opened_images:
             img_array = np.array(img)
-            filtered_array = ndi.prewitt(img_array, size=size, mode=mode)
+            filtered_array = ndi.prewitt(img_array,mode=mode)
             filtered_img = Image.fromarray(filtered_array)
             self.prewitt_images.append(filtered_img)
 
         self.save_to_directory("images\\prewitt")
 
-    def sobel_convert(self, size, mode="reflect"):
-        if size % 2 == 0:
-            size = size + 1
-
-        self.median_filter_converted_images = []
+    def sobel_convert(self,mode="reflect"):
+        self.sobel_images = []
 
         for img in self.opened_images:
             img_array = np.array(img)
-            filtered_array = ndi.sobel(img_array, size=size, mode=mode)
+            filtered_array = ndi.sobel(img_array,mode=mode)
             filtered_img = Image.fromarray(filtered_array)
             self.sobel_images.append(filtered_img)
 
