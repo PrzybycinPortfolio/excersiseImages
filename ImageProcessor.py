@@ -25,7 +25,7 @@ class ImageProcessor:
 
         for img in self.opened_images:
             img_array = np.array(img)
-            filtered_array = ndi.median_filter(img_array, size=size, mode=mode)
+            filtered_array = ndi.uniform_filter(img_array, size=size, mode=mode)
             filtered_img = Image.fromarray(filtered_array)
             self.mean_filter_converted_images.append(filtered_img)
 
@@ -54,6 +54,7 @@ class ImageProcessor:
             filtered_array = ndi.maximum_filter(img_array, size=size, mode=mode)
             filtered_img = Image.fromarray(filtered_array)
             self.max_filter_converted_images.append(filtered_img)
+
 
     def save_to_directory(self, directory_name):
         os.makedirs(directory_name, exist_ok=True)
