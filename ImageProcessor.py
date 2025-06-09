@@ -60,6 +60,19 @@ class ImageProcessor:
 
         self.save_to_directory("images\\min_filter")
 
+    def max_filter_convert(self,size,mode="reflect"):
+        if size % 2 == 0:
+            size = size + 1
+
+        self.median_filter_converted_images = []
+
+        for img in self.opened_images:
+            img_array = np.array(img)
+            filtered_array = ndi.median_filter(img_array, size=size, mode=mode)
+            filtered_img = Image.fromarray(filtered_array)
+            self.max_filter_converted_images.append(filtered_img)
+
+        self.save_to_directory("images\\median_filter")
 
     def save_to_directory(self, directory_name):
         os.makedirs(directory_name, exist_ok=True)
