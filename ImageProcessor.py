@@ -12,6 +12,7 @@ class ImageProcessor:
         self.mean_filter_converted_images = []
         self.min_filter_converted_images = []
         self.max_filter_converted_images = []
+        self.median_filter_converted_images = []
 
         for img_path in self.my_images:
             img = Image.open(img_path).convert("L")
@@ -42,6 +43,8 @@ class ImageProcessor:
             filtered_array = ndi.minimum_filter(img_array, size=size, mode=mode)
             filtered_img = Image.fromarray(filtered_array)
             self.min_filter_converted_images.append(filtered_img)
+            
+        self.save_to_directory("images\\min_filter")
 
     def max_filter_converte(self,size,mode="reflect"):
         if size % 2 == 0:
@@ -54,6 +57,8 @@ class ImageProcessor:
             filtered_array = ndi.maximum_filter(img_array, size=size, mode=mode)
             filtered_img = Image.fromarray(filtered_array)
             self.max_filter_converted_images.append(filtered_img)
+
+        self.save_to_directory("images\\min_filter")
 
 
     def save_to_directory(self, directory_name):
